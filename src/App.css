@@ -1,0 +1,17 @@
+.app_wrapper{
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1200px;
+    display: block;
+    
+}
+.app-wrapper-content{
+    background-color: khaki;
+    width: 100%;
+  }
+.main{
+    display: flex;
+    width: 100%;
+}
+
+

@@ -1,0 +1,7 @@
+.wrapper{
+    display: flex;
+    width: 30%;
+}
+.active{
+    font-size: 20px;
+}

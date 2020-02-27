@@ -1,0 +1,30 @@
+.nav{
+    width:200px;
+    background-color: hotpink;
+    margin-right: 10px;
+}
+.nav div{
+    padding: 20px;
+}
+.nav div a{
+    text-decoration: none;
+    color: white;
+}
+.nav .active{
+    color: teal;
+}
+.nav .friends .item{
+    display: flex;
+    width: 100%;
+    padding: 0;
+}
+.nav .friends .item div{
+    padding: 0;
+}
+.nav .friends .text{
+    padding: 20px 0;
+    font-size: 25px;
+}
+.friends{
+    padding: 0;
+}
