@@ -11,9 +11,10 @@ const MyPost = (props) => {
   let otherPosts = props.OPE.postsData.map((otherPost) => <OtherPost text={otherPost.text} likeCount={otherPost.likeCount} />)
   let myPostText = React.createRef();
   let myPostActive = ()=>{
-      props.myPost();
+      props.myPostAdd();
   }
   let newChange = () => {
+    console.log(props.newChangeText);
     props.newChangeText(myPostText.current.value);
   }
   return (

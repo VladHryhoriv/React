@@ -10,24 +10,27 @@ import { Route } from 'react-router-dom';
 
 
 const App = (props) => {
-  console.log(props.newChangeText);
+  console.log(props.state)
   return (
       <div className='app_wrapper'>
         <Header />
         <div className='main'>
           <NavBar 
-           navBar={props.stateData.navBar.Friends}/>
+           navBar={props.state.navBar.Friends}/>
           <div className='app-wrapper-content'>
             <Route path='/profile' render={() => <Profile
-              for_Profile={props.stateData.profilePage}  
+              for_Profile={props.state.profilePage}  
               newChangeText={props.newChangeText}
-              myPost={props.myPost}/>} 
+              myPostAdd={props.myPostAdd}/>} 
               />
               
             <Route path='/messages' render={() => <Dialogs
-              dialogName={props.stateData.dialogPage.dialogData}
-              messages={props.stateData.dialogPage.messages}
-              sendMassage={props.sendMassage}/>} />
+              dialogName={props.state.dialogPage.dialogData}
+              messages={props.state.dialogPage.messages}
+              newMassage={props.newMassage}
+              sendMassage={props.sendMassage}
+              messageChange={props.messageChange}
+              />} />
             <Route path='/news' redact={() => <News />} />
             <Route path='/music' redact={() => <Music />} />
           </div>

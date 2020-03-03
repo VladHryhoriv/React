@@ -10,10 +10,9 @@ const Dialogs = (props) => {
     let sendMassageText = React.createRef();
     let sendMassages = () => {
         props.sendMassage(sendMassageText.current.value);
-        sendMassageText.current.value = '';
     }
     let messageChange= ()=>{
-        props.messageChange()
+        props.messageChange(sendMassageText.current.value);
     }
     return (
         <div className={style.wrapper}>
@@ -23,7 +22,7 @@ const Dialogs = (props) => {
             <div className={style.messages}>
             {messages}
                 <div className={style.text_area}>
-                    <textarea className={style.text_area} ref={sendMassageText} onChange={messageChange}></textarea>
+                    <textarea className={style.text_area} ref={sendMassageText} onChange={messageChange} value={props.newMassage}></textarea>
                     <input type="button" value="Send" onClick={sendMassages}/>
                 </div>
             </div>
