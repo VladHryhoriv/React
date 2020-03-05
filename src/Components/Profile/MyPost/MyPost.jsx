@@ -1,6 +1,7 @@
 import React from 'react';
 import style from './MyPost.module.css';
 import OtherPost from '../OtherPost/OtherPost';
+import { AddPostActionCreator, ChangeInPostActionCreator } from '../../../redux/profile-reducer';
 
 
 
@@ -9,13 +10,12 @@ import OtherPost from '../OtherPost/OtherPost';
 
 const MyPost = (props) => {
   let otherPosts = props.OPE.postsData.map((otherPost) => <OtherPost text={otherPost.text} likeCount={otherPost.likeCount} />)
-  let myPostText = React.createRef();
   let myPostActive = ()=>{
-      props.myPostAdd();
+      props.dispatch(AddPostActionCreator());
   }
-  let newChange = () => {
-    console.log(props.newChangeText);
-    props.newChangeText(myPostText.current.value);
+  let newChange = (e) => {
+    let newtxt = e.target.value;
+    props.dispatch(ChangeInPostActionCreator(newtxt));
   }
   return (
     <div className={style.wrapper}>
@@ -32,7 +32,7 @@ const MyPost = (props) => {
       </div>
       <div className={style.new_post}>
         MyPost
-        <input placeholder='your post' type='text' className={style.your_post} ref={myPostText} onChange={newChange} value={props.OPE.newPostChange}></input>
+        <input placeholder='your post' type='text' className={style.your_post}  onChange={newChange} value={props.OPE.newPostChange}></input>
         <input type='button' value='Send' className={style.but_send} onClick={myPostActive}></input>
       </div>
       {otherPosts}

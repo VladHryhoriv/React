@@ -10,7 +10,6 @@ import { Route } from 'react-router-dom';
 
 
 const App = (props) => {
-  console.log(props.state)
   return (
       <div className='app_wrapper'>
         <Header />
@@ -20,16 +19,14 @@ const App = (props) => {
           <div className='app-wrapper-content'>
             <Route path='/profile' render={() => <Profile
               for_Profile={props.state.profilePage}  
-              newChangeText={props.newChangeText}
-              myPostAdd={props.myPostAdd}/>} 
+              dispatch={props.dispatch}/>} 
               />
               
             <Route path='/messages' render={() => <Dialogs
-              dialogName={props.state.dialogPage.dialogData}
-              messages={props.state.dialogPage.messages}
-              newMassage={props.newMassage}
-              sendMassage={props.sendMassage}
-              messageChange={props.messageChange}
+              dialogPage={props.state.dialogPage}
+              //messages={props.state.dialogPage.messages}
+              //newMassage={props.newMassage} Змінений текст
+              dispatch={props.dispatch}
               />} />
             <Route path='/news' redact={() => <News />} />
             <Route path='/music' redact={() => <Music />} />

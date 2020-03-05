@@ -1,4 +1,4 @@
 import {renderPage} from './render/render';
-import store from './state/state';
+import store from './redux/state';
 
 renderPage(store);

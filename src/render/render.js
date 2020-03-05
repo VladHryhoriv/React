@@ -4,17 +4,13 @@ import './../index.css';
 import App from './../App';
 import * as serviceWorker from './../serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
-import store from './../state/state';
+import store from './../redux/state';
 export let renderPage=(state)=>{
 ReactDOM.render(
     <BrowserRouter>
         <App 
         state={store.getState()} 
-        sendMassage={store.sendMassage.bind(store)}
-        newMassage={store.getState().dialogPage.newMassage}
-        newChangeText={store.ChangeTextInPosts.bind(store)}
-        myPostAdd={store.myPostAdd.bind(store)}
-        messageChange={store.messageChange.bind(store)}/>
+        dispatch={store.dispatch.bind(store)}/>
     </BrowserRouter>, document.getElementById('root') );
 serviceWorker.unregister();
 }
