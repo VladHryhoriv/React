@@ -1,5 +1,5 @@
-import profileReducer from "./profile-reducer";
-import dialogReducer from "./dialogs-reducer";
+import profileReducer from "../redux/profile-reducer";
+import dialogReducer from "../redux/dialogs-reducer";
 let store = {
     _state: {
         profilePage: {
@@ -33,41 +33,10 @@ let store = {
         }
     },
     _renderPage() { },
-    //Полученние state
     getState() {
         return this._state;
     },
-    //Надіслання повідомлення
-    // sendMassage() {
-    //     let newMassage = {
-    //         text: this._state.dialogPage.newMassage
-    //     }
-    //     console.log(this)
-    //     this._state.dialogPage.messages.push(newMassage);
-    //     this._state.dialogPage.newMassage = '';
-    //     this._renderPage(this._state);
-    // },
-    // //Добавление поста
-    // myPostAdd() {
-    //     let newPost = {
-    //         id: '3',
-    //         text: this._state.profilePage.newPostChange,
-    //         likeCount: '0'
-    //     }
-    //     this._state.profilePage.postsData.push(newPost);
-    //     this._state.profilePage.newPostChange = '';
-    //     this._renderPage(this._state);
-    // },
-    // //Изминения в textarea в message
-    // messageChange(newText) {
-        
-    // },
-    // //Изминения в textarea в Post
-    // ChangeTextInPosts(newText) {
-    //     this._state.profilePage.newPostChange = newText;
-    //     this._renderPage(this._state);
-    // },
-    //Render Page
+    
     Render(observer) {
         this._renderPage = observer;
     },

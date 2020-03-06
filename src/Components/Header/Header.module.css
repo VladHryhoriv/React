@@ -1,8 +1,15 @@
 .header{
     width: 100%;
-    background-color: green;
     margin-bottom: 10px;
+    text-align: center;
+    border: 2px solid;
+    border-radius: 19px;
+    box-shadow:0 5px 10px rgba(0, 0, 0, 0.835);
 }
-.header img{
-    width: 70px;
+.text{
+    font-family: 'Trade Winds', cursive;
+    font-size: 32px;
+}
+.text .text2{
+    font-size: 18px;
 }

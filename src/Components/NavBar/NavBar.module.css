@@ -1,14 +1,17 @@
 .nav{
     width:200px;
-    background-color: hotpink;
+    background-color: rgb(206, 199, 203);
     margin-right: 10px;
+    box-shadow:0 0 10px rgba(0, 0, 0, 0.5);
 }
 .nav div{
     padding: 20px;
+    font-size: 20px;
+    font-family: 'Bree Serif', serif;
 }
 .nav div a{
     text-decoration: none;
-    color: white;
+    color: black;
 }
 .nav .active{
     color: teal;

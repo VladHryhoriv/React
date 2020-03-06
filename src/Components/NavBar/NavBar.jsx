@@ -18,6 +18,7 @@ const NavBar = (props) => {
                     {friends}
                 </div>
             </div>
+            <link href={`https://fonts.googleapis.com/css?family=Bree+Serif|Trade+Winds&display=swap`} rel="stylesheet"></link>
         </nav>
     );
 }
