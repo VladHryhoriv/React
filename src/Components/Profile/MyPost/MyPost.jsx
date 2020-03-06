@@ -1,21 +1,16 @@
 import React from 'react';
 import style from './MyPost.module.css';
 import OtherPost from '../OtherPost/OtherPost';
-import { AddPostActionCreator, ChangeInPostActionCreator } from '../../../redux/profile-reducer';
-
-
-
-
 
 
 const MyPost = (props) => {
-  let otherPosts = props.OPE.postsData.map((otherPost) => <OtherPost text={otherPost.text} likeCount={otherPost.likeCount} />)
+  let otherPosts = props.postsData.map((otherPost) => <OtherPost text={otherPost.text} likeCount={otherPost.likeCount} />)
   let myPostActive = ()=>{
-      props.dispatch(AddPostActionCreator());
+      props.AddPostAction();
   }
   let newChange = (e) => {
     let newtxt = e.target.value;
-    props.dispatch(ChangeInPostActionCreator(newtxt));
+    props.ChangeInPostAction(newtxt)
   }
   return (
     <div className={style.wrapper}>
@@ -31,11 +26,14 @@ const MyPost = (props) => {
         </div>
       </div>
       <div className={style.new_post}>
-        MyPost
-        <input placeholder='your post' type='text' className={style.your_post}  onChange={newChange} value={props.OPE.newPostChange}></input>
-        <input type='button' value='Send' className={style.but_send} onClick={myPostActive}></input>
+        <div className={style.text}> MyPost</div>
+        <input placeholder='The best site for PROGRAMING' type='text' className={style.your_post} onChange={newChange} value={props.newPostChange}></input>
+        <div className={style.wrapper_button}>
+          <input type='button' value="Send" className={style.but_send} onClick={myPostActive}></input>
+        </div>
       </div>
       {otherPosts}
+      <link href={`https://fonts.googleapis.com/css?family=Kanit&display=swap`} rel="stylesheet"></link>
     </div>
   );
 }

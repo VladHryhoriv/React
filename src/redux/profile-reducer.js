@@ -8,7 +8,7 @@ let initionalState={
         { id: '3', text: 'AAAAAAAAAAAAA ?', likeCount: '0' },
         { id: '4', text: 'DDDDDD ?', likeCount: '100' }
     ],
-    newPostChange: 'it-kamasutra '
+    newPostChange: ''
 };
 
 

@@ -17,10 +17,7 @@ const App = (props) => {
           <NavBar 
            navBar={props.state.navBar.Friends}/>
           <div className='app-wrapper-content'>
-            <Route path='/profile' render={() => <Profile
-              for_Profile={props.state.profilePage}  
-              dispatch={props.dispatch}/>} 
-              />
+            <Route path='/profile' render={() => <Profile store={props.store}/>}/>
               
             <Route path='/messages' render={() => <Dialogs
               dialogPage={props.state.dialogPage}
