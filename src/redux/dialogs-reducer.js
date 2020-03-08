@@ -14,7 +14,7 @@ let initionalState =  {
     newMassage: 'message'
 }
 
-const dialogReducer = (state=initionalState, action) => {
+const dialogReducer = (state = initionalState, action) => {
     switch (action.type) {
         case CHANGE_IN_MESSAGE:
             state.newMassage = action.newText;

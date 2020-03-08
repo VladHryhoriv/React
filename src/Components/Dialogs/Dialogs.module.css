@@ -13,11 +13,18 @@
     width: 80%;
     display: flex;
 }
-/* .dialogs .active{
-    color: turquoise;
-    font-size: 20px;
-} */
-/*  */
+.text_area .input{
+    border: 2px solid olive;
+    border-radius: 15px;
+}
+.text_area .btn_send{
+    border:none;
+    border-radius: 20px;
+    background-color: black;
+    color: white;
+    width: 70px;
+    margin-left:10px ;
+}
 a{
     color: black;
     text-decoration: none;

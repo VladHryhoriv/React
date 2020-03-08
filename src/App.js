@@ -2,11 +2,11 @@ import React from 'react';
 import './App.css';
 import Header from './Components/Header/Header';
 import NavBar from './Components/NavBar/NavBar';
-import Dialogs from './Components/Dialogs/Dialogs';
 import Profile from './Components/Profile/Profile';
 import Music from './Components/Music/Music';
 import News from './Components/News/News';
 import { Route } from 'react-router-dom';
+import DialogsContainer from './Components/Dialogs/DialogsContainer';
 
 
 const App = (props) => {
@@ -15,16 +15,10 @@ const App = (props) => {
         <Header />
         <div className='main'>
           <NavBar 
-           navBar={props.state.navBar.Friends}/>
+           navBar={props.store.getState().navBar.Friends}/>
           <div className='app-wrapper-content'>
-            <Route path='/profile' render={() => <Profile store={props.store}/>}/>
-              
-            <Route path='/messages' render={() => <Dialogs
-              dialogPage={props.state.dialogPage}
-              //messages={props.state.dialogPage.messages}
-              //newMassage={props.newMassage} Змінений текст
-              dispatch={props.dispatch}
-              />} />
+            <Route path='/profile' render={() => <Profile/>}/>
+            <Route path='/messages' render={() => <DialogsContainer />} />
             <Route path='/news' redact={() => <News />} />
             <Route path='/music' redact={() => <Music />} />
           </div>

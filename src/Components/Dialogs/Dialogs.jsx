@@ -1,30 +1,25 @@
 import React from 'react';
 import style from './Dialogs.module.css';
-import DialogItem from './DialogItem/DialogItem';
-import Message from './Message/Message';
-import { messageChangeActionCreator, sendMessageActionCreator } from '../../redux/dialogs-reducer';
 
 
 const Dialogs = (props) => {
-    let dialogName = props.dialogPage.dialogData.map((d) => <DialogItem id={d.id} name={d.name} />);
-    let messages = props.dialogPage.messages.map(m=> <Message message={m.text}/>);
     let sendMassages = () => {
-        props.dispatch(sendMessageActionCreator());
+        props.sendMessageAction();
     }
     let messageChange= (e)=>{
-        let newtxt = e.target.value;
-        props.dispatch(messageChangeActionCreator(newtxt));
+        let newtxt = e.target.value;;
+        props.messageChangeAction(newtxt);
     }
     return (
         <div className={style.wrapper}>
             <div className={style.dialogs}>
-                {dialogName}
+                {props.dialogName}
             </div>
             <div className={style.messages}>
-            {messages}
+            {props.messages}
                 <div className={style.text_area}>
-                    <textarea className={style.text_area} onChange={messageChange} value={props.dialogPage.newMassage}></textarea>
-                    <input type="button" value="Send" onClick={sendMassages}/>
+                    <textarea className={style.input} onChange={messageChange} value={props.newMassage}></textarea>
+                    <input className={style.btn_send} type="button" value="Send" onClick={sendMassages}/>
                 </div>
             </div>
         </div>

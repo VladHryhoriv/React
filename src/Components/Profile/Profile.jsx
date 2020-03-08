@@ -10,7 +10,7 @@ const Profile = (props) => {
       <div className={style.content_img}>
         <img src='https://2f13yq12csmv2yraq925m73i-wpengine.netdna-ssl.com/wp-content/uploads/2018/05/149A0553-1024x512.jpg' alt='NoIMg'></img>
       </div>
-      <MyPostContainer store={props.store} />
+      <MyPostContainer/>
     </div>
   );
 }
