@@ -1,6 +1,6 @@
 const SEND_MESSAGE = "SEND-MESSAGE";
 const CHANGE_IN_MESSAGE = "GHANGE-IN-MESSAGE";
-let initionalState =  {
+let initionalState = {
     dialogData: [
         { id: '1', name: 'Dima' },
         { id: '2', name: 'Lena' },
@@ -16,16 +16,19 @@ let initionalState =  {
 
 const dialogReducer = (state = initionalState, action) => {
     switch (action.type) {
-        case CHANGE_IN_MESSAGE:
-            state.newMassage = action.newText;
-            return state;
-        case SEND_MESSAGE:
-            let newMassage = {
-                text: state.newMassage
+        case CHANGE_IN_MESSAGE: {
+            return {
+                ...state,
+                newMassage: action.newText
             }
-            state.messages.push(newMassage);
-            state.newMassage = '';
-            return state;
+        }
+        case SEND_MESSAGE: {
+            return{
+                ...state,
+                messages : [...state.messages , {text:state.newMassage}],
+                newMassage:''
+            }
+        }
         default: return state;
     }
 }

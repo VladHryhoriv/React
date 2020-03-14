@@ -4,7 +4,7 @@ import OtherPost from '../OtherPost/OtherPost';
 
 
 const MyPost = (props) => {
-  let otherPosts = props.postsData.map((otherPost) => <OtherPost text={otherPost.text} likeCount={otherPost.likeCount} />)
+  let otherPosts = props.postsData.map((otherPost) => <OtherPost text={otherPost.text} key={otherPost.id} likeCount={otherPost.likeCount} />)
   let myPostActive = ()=>{
       props.AddPostAction();
   }

@@ -36,14 +36,9 @@ let store = {
     getState() {
         return this._state;
     },
-    
-    Render(observer) {
-        this._renderPage = observer;
-    },
     dispatch(action) {
         this._state.profilePage=profileReducer(this._state.profilePage,action);
         this._state.dialogPage=dialogReducer(this._state.dialogPage,action) 
-        this._renderPage(this._state)
     }
 }
 

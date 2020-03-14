@@ -3,11 +3,12 @@ import style from './Dialogs.module.css';
 
 
 const Dialogs = (props) => {
+    console.log(props.newMassage)
     let sendMassages = () => {
         props.sendMessageAction();
     }
     let messageChange= (e)=>{
-        let newtxt = e.target.value;;
+        let newtxt = e.target.value;
         props.messageChangeAction(newtxt);
     }
     return (
