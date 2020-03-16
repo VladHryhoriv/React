@@ -7,7 +7,7 @@ import News from './Components/News/News';
 import { Route } from 'react-router-dom';
 import DialogsContainer from './Components/Dialogs/DialogsContainer';
 import NavBarContainer from './Components/NavBar/NavBarContainer'
-import UserContainer from './Components/Users/UsersContainer';
+import UserContainerConnect from './Components/Users/UsersContainer';
 
 const App = (props) => {
   return (
@@ -18,7 +18,7 @@ const App = (props) => {
           <div className='app-wrapper-content'>
             <Route path='/profile' render={() => <Profile/>}/>
             <Route path='/messages' render={() => <DialogsContainer />} />
-            <Route path= '/users' render={()=> <UserContainer/>}/>
+            <Route path= '/users' render={()=> <UserContainerConnect/>}/>
             <Route path='/news' redact={() => <News />} />
             <Route path='/news' redact={() => <News />} />
             <Route path='/music' redact={() => <Music />} />

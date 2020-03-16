@@ -1,44 +1,28 @@
-import { AddPostActionCreator, ChangeInPostActionCreator } from '../../../redux/profile-reducer';
+import React from 'react'
+import { AddPost, ChangeInPost ,setUserProfile } from '../../../redux/profile-reducer';
 import MyPost from './MyPost';
+import * as axios from 'axios'
 import { connect } from 'react-redux';
 
-// const MyPostContainer = (props) => {
-//   return <StoreContext.Consumer>
-//     {
-//       (store) => {
-//         let postsData = store.getState().profilePage.postsData;
-//         let newPostChange = store.getState().profilePage.newPostChange;
-//         let myPostActive = () => {
-//           store.dispatch(AddPostActionCreator());
-//         }
-//         let newChange = (newtxt) => {
-//           store.dispatch(ChangeInPostActionCreator(newtxt));
-//         }
-//         return <MyPost postsData={postsData} 
-//         AddPostAction={myPostActive} 
-//         ChangeInPostAction={newChange} 
-//         newPostChange={newPostChange} />
-//       }
-//     }
-//   </StoreContext.Consumer>
-// }
+class MyPostContainer extends React.Component{
+  componentDidMount(){
+    
+    axios.get('https://social-network.samuraijs.com/api/1.0/profile/2').then(response => {
+        this.props.setUserProfile(response.data)
+		})
+  }
+  render(){
+    return<>
+      <MyPost {...this.props} profile={this.props.profile}/>
+    </>
+  }
+}
 
-const mapStateToProps = (state) => {
-  return{
+const mapStateToProps = (state) => ({
     newPostChange:state.profilePage.newPostChange,
-    postsData:state.profilePage.postsData
-  }
-}
-const mapDispatchToProps = (dispatch) => {
-  return{
-    AddPostAction:()=>{
-      dispatch(AddPostActionCreator());
-    },
-    ChangeInPostAction:(newtxt)=>{
-      dispatch(ChangeInPostActionCreator(newtxt))
-    }
-  }
-}
+    postsData:state.profilePage.postsData,
+    profile:state.profilePage.profile
+})
 
-const MyPostContainer = connect(mapStateToProps,mapDispatchToProps)(MyPost)
-export default MyPostContainer;
+const MyPostContainerConnect = connect(mapStateToProps,{AddPost,ChangeInPost,setUserProfile})(MyPostContainer)
+export default MyPostContainerConnect;

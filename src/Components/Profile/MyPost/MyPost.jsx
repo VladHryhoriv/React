@@ -1,22 +1,28 @@
 import React from 'react';
 import style from './MyPost.module.css';
 import OtherPost from '../OtherPost/OtherPost';
+import Preloader from '../../Preloader/Preload';
 
 
 const MyPost = (props) => {
   let otherPosts = props.postsData.map((otherPost) => <OtherPost text={otherPost.text} key={otherPost.id} likeCount={otherPost.likeCount} />)
   let myPostActive = ()=>{
-      props.AddPostAction();
+      props.AddPost();
   }
   let newChange = (e) => {
     let newtxt = e.target.value;
-    props.ChangeInPostAction(newtxt)
+    props.ChangeInPost(newtxt)
+  }
+  debugger
+  if(!props.profile){
+    return <Preloader/>
   }
   return (
+    
     <div className={style.wrapper}>
       <div className={style.person}>
         <div className={style.ava}>
-          <img alt='NoImg' src='https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg'></img>
+          <img alt='NoImg' src={props.profile.photos}></img>
         </div>
         <div className={style.name}>
           Diam

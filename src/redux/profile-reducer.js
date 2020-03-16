@@ -1,5 +1,6 @@
 const ADD_POST = "ADD-POST";
 const CHANGE_IN_POST = "GHANGE-IN-POSTS"
+const SET_USER_PROFILE = "SET_USER_PROFILE"
 
 let initionalState={
     postsData: [
@@ -8,7 +9,8 @@ let initionalState={
         { id: '3', text: 'AAAAAAAAAAAAA ?', likeCount: '0' },
         { id: '4', text: 'DDDDDD ?', likeCount: '100' }
     ],
-    newPostChange: ''
+    newPostChange: '',
+    profile:null
 };
 
 
@@ -31,19 +33,15 @@ const profileReducer=(state=initionalState,action)=>{
                 ...state,
                 postsData : [...state.postsData,newPost],
                 newPostChange : ''
-            };
+            }
+        }
+        case SET_USER_PROFILE:{
+            return{...state,profile:action}
         }
         default:return state;
     }
 }
-export const AddPostActionCreator = ()=>{
-    return(
-        {type:ADD_POST}
-    )
-}
-export const ChangeInPostActionCreator = (text)=>{
-    return(
-        {type:CHANGE_IN_POST,newText:text}
-    )
-}
+export const AddPost = ()=>({type:ADD_POST})
+export const ChangeInPost = (text)=>({type:CHANGE_IN_POST,newText:text})
+export const setUserProfile = (profile)=>({type:SET_USER_PROFILE,profile})
 export default profileReducer;
