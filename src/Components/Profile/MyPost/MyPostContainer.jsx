@@ -12,12 +12,12 @@ class MyPostContainer extends React.Component{
 		})
   }
   render(){
+    
     return<>
       <MyPost {...this.props} profile={this.props.profile}/>
     </>
   }
 }
-
 const mapStateToProps = (state) => ({
     newPostChange:state.profilePage.newPostChange,
     postsData:state.profilePage.postsData,

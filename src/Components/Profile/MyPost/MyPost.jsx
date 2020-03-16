@@ -13,7 +13,6 @@ const MyPost = (props) => {
     let newtxt = e.target.value;
     props.ChangeInPost(newtxt)
   }
-  debugger
   if(!props.profile){
     return <Preloader/>
   }
@@ -22,7 +21,7 @@ const MyPost = (props) => {
     <div className={style.wrapper}>
       <div className={style.person}>
         <div className={style.ava}>
-          <img alt='NoImg' src={props.profile.photos}></img>
+          <img src={props.profile.photos.large} alt='NoImg'></img>
         </div>
         <div className={style.name}>
           Diam
