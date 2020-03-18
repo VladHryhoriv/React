@@ -12,7 +12,6 @@ class UserContainer extends React.Component {
             this.props.setIsFetching(false);
             this.props.setUsers(response.data.items);
             this.props.setTotalUserCount(response.data.totalCount);
-            console.log(response.data.totalCount)
 		})
     }
 	onPageChange = (numberPage) => {

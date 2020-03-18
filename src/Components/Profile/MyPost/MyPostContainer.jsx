@@ -3,26 +3,33 @@ import { AddPost, ChangeInPost ,setUserProfile } from '../../../redux/profile-re
 import MyPost from './MyPost';
 import * as axios from 'axios'
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 class MyPostContainer extends React.Component{
   componentDidMount(){
-    
-    axios.get('https://social-network.samuraijs.com/api/1.0/profile/2').then(response => {
+   let userId = this.props.match.params.userId;
+   debugger
+   if(!userId){
+     userId = 2;
+   }
+    axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`).then(response => {
         this.props.setUserProfile(response.data)
-		})
+    })
+    
   }
   render(){
-    
+    console.log(this.props)
     return<>
-      <MyPost {...this.props} profile={this.props.profile}/>
+      <MyPost {...this.props} />
     </>
   }
 }
 const mapStateToProps = (state) => ({
     newPostChange:state.profilePage.newPostChange,
     postsData:state.profilePage.postsData,
-    profile:state.profilePage.profile
+    profile:state.profilePage.profile,
+    fullName:state.profilePage.fullName
 })
-
-const MyPostContainerConnect = connect(mapStateToProps,{AddPost,ChangeInPost,setUserProfile})(MyPostContainer)
+let withRouterConnecting = withRouter(MyPostContainer)
+const MyPostContainerConnect = connect(mapStateToProps,{AddPost,ChangeInPost,setUserProfile})(withRouterConnecting)
 export default MyPostContainerConnect;

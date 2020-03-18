@@ -24,7 +24,7 @@ const MyPost = (props) => {
           <img src={props.profile.photos.large} alt='NoImg'></img>
         </div>
         <div className={style.name}>
-          Diam
+          {props.profile.fullName}
               <div className={style.about_person}>
             Something Text
               </div>
