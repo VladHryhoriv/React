@@ -4,7 +4,6 @@ import MyPostContainerConnect from './MyPost/MyPostContainer';
 
 
 const Profile = (props) => {
-  
   return (
     <div className={style.wrapper}>
       <div className={style.content_img}>

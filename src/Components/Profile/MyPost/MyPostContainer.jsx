@@ -1,9 +1,9 @@
 import React from 'react'
 import { AddPost, ChangeInPost ,setUserProfile } from '../../../redux/profile-reducer';
 import MyPost from './MyPost';
-import * as axios from 'axios'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { profileAPI } from '../../../API/api';
 
 class MyPostContainer extends React.Component{
   componentDidMount(){
@@ -11,10 +11,8 @@ class MyPostContainer extends React.Component{
    if(!userId){
      userId = 2;
    }
-    axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`,{
-      withCredentials:true
-    }).then(response => {
-        this.props.setUserProfile(response.data)
+   profileAPI.getUserProfile(userId).then(data => {
+        this.props.setUserProfile(data)
     })
     
   }
