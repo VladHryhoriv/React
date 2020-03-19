@@ -6,7 +6,8 @@
     
 }
 .app-wrapper-content{
-    background-color:rgb(230, 228, 228) ;
+    /*background-color:rgb(230, 228, 228) ;*/
+    background-color: #DCDCDC;
     width: 100%;
     border-radius: 10px;
   }
