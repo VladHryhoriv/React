@@ -2,6 +2,7 @@ import React from 'react';
 import style from './MyPost.module.css';
 import OtherPost from '../OtherPost/OtherPost';
 import Preloader from '../../Preloader/Preload';
+import userPhoto from '../../../assmeut/UserPhoto/user.png'
 
 
 const MyPost = (props) => {
@@ -21,7 +22,7 @@ const MyPost = (props) => {
     <div className={style.wrapper}>
       <div className={style.person}>
         <div className={style.ava}>
-          <img src={props.profile.photos.large} alt='NoImg'></img>
+          <img src={props.profile.photos.large ? props.profile.photos.large:userPhoto} alt=''></img>
         </div>
         <div className={style.name}>
           {props.profile.fullName}
