@@ -41,7 +41,6 @@ export const headerAPI = {
 }
 export const profileAPI = {
     getUserProfile(Id){
-        debugger
         return instance.get(`profile/${Id}`).then(response=>response.data)
     },
     getAuthMe(){

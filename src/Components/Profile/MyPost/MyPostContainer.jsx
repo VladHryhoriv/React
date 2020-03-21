@@ -13,7 +13,6 @@ class MyPostContainer extends React.Component {
         userId = data.data.id
         profileAPI.getUserProfile(userId).then(response => {
           this.props.setUserProfile(response)
-          debugger
           console.log(this.props.profile)
         })
       })
