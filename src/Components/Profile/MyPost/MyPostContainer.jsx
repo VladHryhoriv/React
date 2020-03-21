@@ -9,18 +9,8 @@ class MyPostContainer extends React.Component {
     let userId = this.props.match.params.userId;
     if (!userId) {
       this.props.setAuthMeThunk(userId)
-      // profileAPI.getAuthMe().then(data => {
-      //   userId = data.data.id
-      //   profileAPI.getUserProfile(userId).then(response => {
-      //     this.props.setUserProfile(response)
-      //   })
-      // })
     }
     this.props.getUserProfileThunk(userId);
-    // profileAPI.getUserProfile(userId).then(data => {
-    //   this.props.setUserProfile(data)
-    // })
-    
   }
   render() {
     console.log(this.props)

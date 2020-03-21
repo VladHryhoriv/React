@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Users from './Users'
-import {followThunk,unfollowThunk,getUsersThunk,setCurrentPageThunk} from '../../redux/users-reducer'
+import {getFollowThunk,getUnfollowThunk,getUsersThunk,getCurrentPageThunk} from '../../redux/users-reducer'
 import Preloader from '../Preloader/Preload'
 
 class UserContainer extends React.Component {
@@ -19,12 +19,12 @@ class UserContainer extends React.Component {
         users={this.props.users}
         onPageChange={this.onPageChange}
         FollowingProgress={this.props.FollowingProgress}
-        followThunk = {this.props.followThunk}
-        unfollowThunk = {this.props.unfollowThunk}
+        followThunk = {this.props.getFollowThunk}
+        unfollowThunk = {this.props.getUnfollowThunk}
         totalUserCount = {this.props.totalUserCount}
         userSize = {this.props.userSize}
         currentPage={this.props.currentPage}
-        setCurrentPageThunk = {this.props.setCurrentPageThunk}
+        setCurrentPageThunk = {this.props.getCurrentPageThunk}
         />
         </>
 	}
@@ -41,6 +41,6 @@ let mapStateToProps = (state) => {
     }
 }
 
-const UserContainerConnect = connect(mapStateToProps,{followThunk,unfollowThunk,getUsersThunk,setCurrentPageThunk })(UserContainer)
+const UserContainerConnect = connect(mapStateToProps,{getFollowThunk,getUnfollowThunk,getUsersThunk,getCurrentPageThunk })(UserContainer)
 
 export default UserContainerConnect;

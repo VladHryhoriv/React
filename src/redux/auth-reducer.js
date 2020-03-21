@@ -1,3 +1,5 @@
+import { headerAPI } from "../API/api";
+
 const SET_AUTH_USER = "SET_AUTH_USER";
 let initionalState = {
     userId:null,
@@ -19,5 +21,14 @@ const AuthReducer = (state = initionalState, action) => {
         default: return state;
     }
 }
+
+export const getAuthUser = () =>{
+    return (dispatch)=>{
+        headerAPI.getAuthMe().then((data)=>{
+            dispatch(setAuthUser(data.data))
+        })
+    }
+}
+
 export const setAuthUser = (userData)=>({type:SET_AUTH_USER,userData})
 export default AuthReducer;

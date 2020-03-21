@@ -82,7 +82,7 @@ export const getUsersThunk = (currentPage,userSize)=>{
             })
     }
 }
-export const followThunk = (userID)=>{
+export const getFollowThunk = (userID)=>{
     return (dispatch)=>{
         dispatch(isToggleFollowing(true,userID))
 		userAPI.Follow(userID).then(()=>{
@@ -91,7 +91,7 @@ export const followThunk = (userID)=>{
 		})
     }
 }
-export const unfollowThunk = (userID)=>{
+export const getUnfollowThunk = (userID)=>{
     return (dispatch)=>{
         dispatch(isToggleFollowing(true,userID))
 		userAPI.Unfollow(userID).then(()=>{
@@ -100,7 +100,7 @@ export const unfollowThunk = (userID)=>{
 		})
     }
 }
-export const setCurrentPageThunk = (currentPage)=>{
+export const getCurrentPageThunk = (currentPage)=>{
     return (dispatch)=>{
         dispatch(setCurrentPage(currentPage))
     }
