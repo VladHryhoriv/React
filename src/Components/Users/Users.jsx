@@ -6,18 +6,35 @@ import { NavLink } from 'react-router-dom';
 const Users = (props) => {
 	let pagesCount = Math.ceil(props.totalUserCount / props.userSize);
 	let pages = [];
+	let min,max =0
 	for (let i = 1; i <= pagesCount; i++) {
 		pages.push(i)
 	}
 	return (
 		<div className={style.wrapper}>
-			<div>
+			<div className={style.activePage}>
+			<span className={style.prev} onClick={(e)=>{
+				props.setCurrentPageThunk(props.currentPage-1)
+				props.onPageChange(props.currentPage-1)
+			}}>&#8592;</span>
 				{
 					pages.map(p => {
-						return <span className={props.currentPage === p && style.active}
+						min = props.currentPage-3
+						max = props.currentPage+3
+						if(p>min && p<max){
+						return <span className={props.currentPage === p ? style.active : style.notActive}
 							onClick={(e) => { props.onPageChange(p) }}>{p}</span >
+						}
+						else{
+							return null
+						}
 					})
+					
 				}
+				<span className={style.next} onClick={(e)=>{
+				props.setCurrentPageThunk(props.currentPage+1)
+				props.onPageChange(props.currentPage+1)
+			}}>&#8594;</span>
 			</div>
 			{
 				props.users.map(u => <div key={u.id}>

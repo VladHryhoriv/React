@@ -1,10 +1,27 @@
 .active{
     font-weight: bold;
+    background-color: black;
+    color: white;
+}
+.notActive ,.active{
+    padding: 0 5px;
+    border: 2px solid black;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: .5s;
+}
+.notActive:hover{
+    background-color: white;
+}
+.prev,.next{
+    cursor: pointer;
+
 }
 .wrapper{
     width: 100%;
     max-width: 900px;
     padding: 50px;
+    background: gray;
 }
 .user{
     display: flex;
@@ -16,6 +33,11 @@
     justify-content: space-around;
     border: 2px solid #808000;
     border-radius: 50px;
+}
+.activePage{
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }
 .aboutUserNS{
     text-align: center;

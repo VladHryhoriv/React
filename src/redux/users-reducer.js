@@ -100,5 +100,9 @@ export const unfollowThunk = (userID)=>{
 		})
     }
 }
-
+export const setCurrentPageThunk = (currentPage)=>{
+    return (dispatch)=>{
+        dispatch(setCurrentPage(currentPage))
+    }
+}
 export default usersReducer;
