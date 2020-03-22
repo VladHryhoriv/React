@@ -22,13 +22,28 @@ const AuthReducer = (state = initionalState, action) => {
     }
 }
 
+
+export const setAuthUser = (userData)=>({type:SET_AUTH_USER,userData})
+// export const setAuthMeThunk = (userId) => {
+//     return (dispatch) => {
+//         profileAPI.getAuthMe().then( data => {
+//             if(data.data.id){
+//             }
+//             userId = data.data.id
+//             profileAPI.getUserProfile(userId).then( response => {
+//                dispatch(setUserProfile(response))
+//             })
+//         })
+//     }
+// }
 export const getAuthUser = () =>{
     return (dispatch)=>{
         headerAPI.getAuthMe().then((data)=>{
-            dispatch(setAuthUser(data.data))
+            if(data.resultCode === 1){}
+            else{
+                dispatch(setAuthUser(data.data))
+            }
         })
     }
 }
-
-export const setAuthUser = (userData)=>({type:SET_AUTH_USER,userData})
 export default AuthReducer;

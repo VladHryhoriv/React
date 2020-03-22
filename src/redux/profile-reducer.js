@@ -58,10 +58,15 @@ export const setFullName = (name) => ({ type: SET_FULL_NAME, name })
 export const setAuthMeThunk = (userId) => {
     return (dispatch) => {
         profileAPI.getAuthMe().then( data => {
-            userId = data.data.id
-            profileAPI.getUserProfile(userId).then( response => {
-               dispatch(setUserProfile(response))
-            })
+            if(data.data.id === undefined){
+                userId = 2 ;
+            }
+            else{
+                userId = data.data.id
+            }
+                profileAPI.getUserProfile(userId).then( response => {
+                dispatch(setUserProfile(response))
+                })
         })
     }
 }

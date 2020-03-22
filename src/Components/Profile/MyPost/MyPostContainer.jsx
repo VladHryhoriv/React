@@ -2,10 +2,12 @@ import React from 'react'
 import { AddPost, ChangeInPost,setAuthMeThunk,getUserProfileThunk} from '../../../redux/profile-reducer';
 import MyPost from './MyPost';
 import { connect } from 'react-redux';
+import { withRedirect } from '../../../hoc/Recording';
 import { withRouter } from 'react-router-dom';
 
 class MyPostContainer extends React.Component {
   componentDidMount() {
+    debugger
     let userId = this.props.match.params.userId;
     if (!userId) {
       this.props.setAuthMeThunk(userId)
@@ -13,7 +15,6 @@ class MyPostContainer extends React.Component {
     this.props.getUserProfileThunk(userId);
   }
   render() {
-    console.log(this.props)
     return <>
       <MyPost {...this.props} />
     </>
@@ -26,5 +27,6 @@ const mapStateToProps = (state) => ({
   fullName: state.profilePage.fullName
 })
 let withRouterConnecting = withRouter(MyPostContainer)
-const MyPostContainerConnect = connect(mapStateToProps, { AddPost, ChangeInPost,setAuthMeThunk,getUserProfileThunk })(withRouterConnecting)
+let authRedirect = withRedirect(withRouterConnecting)
+const MyPostContainerConnect = connect(mapStateToProps, { AddPost, ChangeInPost,setAuthMeThunk,getUserProfileThunk })(authRedirect)
 export default MyPostContainerConnect;

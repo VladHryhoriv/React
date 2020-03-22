@@ -105,4 +105,5 @@ export const getCurrentPageThunk = (currentPage)=>{
         dispatch(setCurrentPage(currentPage))
     }
 }
+
 export default usersReducer;

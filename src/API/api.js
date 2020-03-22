@@ -33,9 +33,7 @@ export const userAPI = {
 export const headerAPI = {
     getAuthMe(){
         return instance.get(`auth/me`).then(response=>{
-            if(response.data.resultCode === 0){
-                return response.data
-            }
+            return response.data
         })
     }
 }
@@ -45,9 +43,7 @@ export const profileAPI = {
     },
     getAuthMe(){
         return instance.get(`auth/me`).then(response=>{
-            if(response.data.resultCode === 0){
                 return response.data
-            }
         })
     }
 }
