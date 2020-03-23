@@ -4,6 +4,7 @@ import MyPost from './MyPost';
 import { connect } from 'react-redux';
 import { withRedirect } from '../../../hoc/Recording';
 import { withRouter } from 'react-router-dom';
+import { compose } from 'redux';
 
 class MyPostContainer extends React.Component {
   componentDidMount() {
@@ -26,7 +27,9 @@ const mapStateToProps = (state) => ({
   profile: state.profilePage.profile,
   fullName: state.profilePage.fullName
 })
-let withRouterConnecting = withRouter(MyPostContainer)
-let authRedirect = withRedirect(withRouterConnecting)
-const MyPostContainerConnect = connect(mapStateToProps, { AddPost, ChangeInPost,setAuthMeThunk,getUserProfileThunk })(authRedirect)
-export default MyPostContainerConnect;
+
+export default compose(
+  withRouter,
+  withRedirect,
+  connect(mapStateToProps, { AddPost, ChangeInPost,setAuthMeThunk,getUserProfileThunk })
+)(MyPostContainer)

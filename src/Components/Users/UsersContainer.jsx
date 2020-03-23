@@ -4,6 +4,7 @@ import Users from './Users'
 import {getFollowThunk,getUnfollowThunk,getUsersThunk,getCurrentPageThunk} from '../../redux/users-reducer'
 import Preloader from '../Preloader/Preload'
 import { withRedirect } from '../../hoc/Recording'
+import { compose } from 'redux'
 
 class UserContainer extends React.Component {
 	componentDidMount() {
@@ -42,8 +43,8 @@ let mapStateToProps = (state) => {
     }
 }
 
-let AuthRedirectComponent = withRedirect(UserContainer)
+export default compose(
+    withRedirect,
+    connect(mapStateToProps,{getFollowThunk,getUnfollowThunk,getUsersThunk,getCurrentPageThunk })
+)(UserContainer)
 
-const UserContainerConnect = connect(mapStateToProps,{getFollowThunk,getUnfollowThunk,getUsersThunk,getCurrentPageThunk })(AuthRedirectComponent)
-
-export default UserContainerConnect;

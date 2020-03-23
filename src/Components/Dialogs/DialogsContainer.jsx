@@ -5,6 +5,7 @@ import Dialogs from './Dialogs';
 import { messageChangeActionCreator, sendMessageActionCreator } from '../../redux/dialogs-reducer';
 import { connect } from 'react-redux';
 import { withRedirect } from '../../hoc/Recording';
+import { compose } from 'redux';
 
 const mapStateToProps = (state) => {
     return{
@@ -25,8 +26,7 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-let AuthRedirectHOC = withRedirect(Dialogs)
-
-const DialogsContainer = connect(mapStateToProps,mapDispatchToProps)(AuthRedirectHOC)
-
-export default DialogsContainer;
+export default compose(
+    withRedirect,
+    connect(mapStateToProps,mapDispatchToProps)
+)(Dialogs)
