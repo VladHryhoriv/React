@@ -1,0 +1,6 @@
+.error input{
+    border: 2px solid red;
+}
+.wrapperInput div .textError{
+    color: red;
+}

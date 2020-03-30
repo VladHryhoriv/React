@@ -13,8 +13,9 @@
     width: 80%;
     display: flex;
 }
-.text_area .input{
+.input{
     border: 2px solid olive;
+    height: 30px;
     border-radius: 15px;
 }
 .btn_send{
