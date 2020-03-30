@@ -1,14 +1,11 @@
 import React from 'react';
 import style from './Dialogs.module.css';
+import { DialogReduxForm } from './DialogReduxForm';
 
 
 const Dialogs = (props) => {
-    let sendMassages = () => {
-        props.sendMessageAction();
-    }
-    let messageChange= (e)=>{
-        let newtxt = e.target.value;
-        props.messageChangeAction(newtxt);
+    let onSubmit = (formData)=>{
+        props.sendMessage(formData.messageInput)
     }
     return (
         <div className={style.wrapper}>
@@ -18,8 +15,7 @@ const Dialogs = (props) => {
             <div className={style.messages}>
             {props.messages}
                 <div className={style.text_area}>
-                    <textarea className={style.input} onChange={messageChange} value={props.newMassage}></textarea>
-                    <input className={style.btn_send} type="button" value="Send" onClick={sendMassages}/>
+                    <DialogReduxForm onSubmit={onSubmit}/>
                 </div>
             </div>
         </div>

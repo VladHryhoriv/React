@@ -1,5 +1,4 @@
 const SEND_MESSAGE = "SEND-MESSAGE";
-const CHANGE_IN_MESSAGE = "GHANGE-IN-MESSAGE";
 let initionalState = {
     dialogData: [
         { id: '1', name: 'Dima' },
@@ -10,36 +9,26 @@ let initionalState = {
     messages: [
         { text: 'Hi' },
         { text: 'How are you?' }
-    ],
-    newMassage: 'message'
+    ]
 }
 
 const dialogReducer = (state = initionalState, action) => {
     switch (action.type) {
-        case CHANGE_IN_MESSAGE: {
-            return {
-                ...state,
-                newMassage: action.newText
-            }
-        }
         case SEND_MESSAGE: {
             return{
                 ...state,
-                messages : [...state.messages , {text:state.newMassage}],
-                newMassage:''
+                messages : [...state.messages , {text:action.newMessage}]
             }
         }
         default: return state;
     }
 }
-export const sendMessageActionCreator = () => {
-    return (
-        { type: SEND_MESSAGE }
-    )
-};
-export const messageChangeActionCreator = (text) => {
-    return (
-        { type: CHANGE_IN_MESSAGE, newText: text }
-    );
+const sendMessageActionCreator = (newMessage) => ({ type: SEND_MESSAGE ,newMessage})
+
+export const sendMessage = (newMessage)=>{
+    return (dispatch)=>{
+        dispatch(sendMessageActionCreator(newMessage))
+    }
 }
+
 export default dialogReducer;

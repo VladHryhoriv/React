@@ -26,7 +26,7 @@
   font-size: 20px;
   font-family: 'Kanit', sans-serif;
 }
-.wrapper_button input{
+.wrapper .new_post .wrapperForm .wrapper_button .but_send{
   height: 40px;
   width: 100px;
   margin-right: 20px;

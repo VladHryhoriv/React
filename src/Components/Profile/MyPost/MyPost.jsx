@@ -3,19 +3,18 @@ import style from './MyPost.module.css';
 import OtherPost from '../OtherPost/OtherPost';
 import Preloader from '../../Preloader/Preload';
 import userPhoto from '../../../assmeut/UserPhoto/user.png'
+import ProfileStatus from './ProfileStatus';
+import { AddPostReduxForm } from './AddPostReduxForm';
 
 
 const MyPost = (props) => {
   let otherPosts = props.postsData.map((otherPost) => <OtherPost text={otherPost.text} key={otherPost.id} likeCount={otherPost.likeCount} />)
-  let myPostActive = ()=>{
-      props.AddPost();
-  }
-  let newChange = (e) => {
-    let newtxt = e.target.value;
-    props.ChangeInPost(newtxt)
-  }
+  
   if(!props.profile){
     return <Preloader/>
+  }
+  let onSubmit=(formData)=>{
+    props.AddPostThunk(formData.yourPost)
   }
   return (
     
@@ -27,16 +26,13 @@ const MyPost = (props) => {
         <div className={style.name}>
           {props.profile.fullName}
               <div className={style.about_person}>
-            Something Text
+                  <ProfileStatus status={props.status} putUserStatus={props.putUserStatus}/>
               </div>
         </div>
       </div>
       <div className={style.new_post}>
         <div className={style.text}> MyPost</div>
-        <input placeholder='The best site for PROGRAMING' type='text' className={style.your_post} onChange={newChange} value={props.newPostChange}></input>
-        <div className={style.wrapper_button}>
-          <input type='button' value="Send" className={style.but_send} onClick={myPostActive}></input>
-        </div>
+        <AddPostReduxForm onSubmit={onSubmit}/>
       </div>
       {otherPosts}
       <link href={`https://fonts.googleapis.com/css?family=Kanit&display=swap`} rel="stylesheet"></link>

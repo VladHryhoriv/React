@@ -2,7 +2,7 @@ import React from 'react';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
 import Dialogs from './Dialogs';
-import { messageChangeActionCreator, sendMessageActionCreator } from '../../redux/dialogs-reducer';
+import { sendMessage } from '../../redux/dialogs-reducer';
 import { connect } from 'react-redux';
 import { withRedirect } from '../../hoc/Recording';
 import { compose } from 'redux';
@@ -15,18 +15,8 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return{
-        sendMessageAction:() => {
-            dispatch(sendMessageActionCreator())
-        },
-        messageChangeAction:(newtxt) => {
-            dispatch(messageChangeActionCreator(newtxt))
-        }
-    }
-}
 
 export default compose(
     withRedirect,
-    connect(mapStateToProps,mapDispatchToProps)
+    connect(mapStateToProps,{sendMessage})
 )(Dialogs)
