@@ -17,3 +17,24 @@
     float: right;
     font-size: 16px;
 }
+.name{
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+    text-align: center ;
+}
+.logout img{
+    width: 10px;
+    height: 10px;
+    padding-left:5px ;
+}
+.wrapperName{
+    display: flex;
+    flex-wrap: wrap;
+}
+.wrapperLogout{
+    width: 100%;
+    text-align: center;
+}
+.logout{
+
+}

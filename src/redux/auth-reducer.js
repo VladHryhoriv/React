@@ -1,4 +1,4 @@
-import { headerAPI } from "../API/api";
+import { headerAPI, profileAPI } from "../API/api";
 const IS_AUTH_USER = 'IS_AUTH_USER'
 const SET_AUTH_USER = "SET_AUTH_USER";
 let initionalState = {
@@ -12,10 +12,7 @@ const AuthReducer = (state = initionalState, action) => {
     switch (action.type) {
         case SET_AUTH_USER: {
             return {...state,
-                userId:action.userData.id,
-                login:action.userData.login,
-                email:action.userData.email,
-                isAuth:true
+                ...action.payload
             }
         }
         case IS_AUTH_USER:{
@@ -26,7 +23,7 @@ const AuthReducer = (state = initionalState, action) => {
 }
 
 
-export const setAuthUser = (userData)=>({type:SET_AUTH_USER,userData})
+export const setAuthUser = (userId,login,email,isAuth)=>({type:SET_AUTH_USER,payload:{userId,login,email,isAuth}})
 export const isAuthUser = ()=>({type:IS_AUTH_USER})
 
 export const getAuthUser = () => {
@@ -34,15 +31,29 @@ export const getAuthUser = () => {
         headerAPI.getAuthMe().then((data)=>{
             if(data.resultCode === 1){}
             else{
-                dispatch(setAuthUser(data.data))
+                let {id,login,email} = data.data
+                dispatch(setAuthUser(id,login,email,true))
             }
         })
     }
 }
 
-export const isAuthUserThunk = () => {
+export const Login = (email,password,rememberMe) => {
     return (dispatch)=>{
-        dispatch(isAuthUser())
+        profileAPI.Login(email,password,rememberMe).then(response=>{
+            if(response.data.resultCode === 0){
+                dispatch(getAuthUser())
+            }
+        })
+    }
+}
+export const Logout = () => {
+    return (dispatch)=>{
+        profileAPI.Logout().then(response=>{
+            if(response.data.resultCode === 0){
+                dispatch(setAuthUser(null,null,null,false))
+            }
+        })
     }
 }
 export default AuthReducer;

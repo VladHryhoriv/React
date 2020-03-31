@@ -48,12 +48,15 @@ export const profileAPI = {
                 return response.data
         })
     },
-    postAuthLogin(email,password,rememberMe){
+    Login(email,password,rememberMe){
         return instance.post('auth/login',{
             email,
             password,
             rememberMe
         })
+    },
+    Logout(){
+        return instance.delete('auth/login')
     },
     putUserStatus(status){
         return instance.put('profile/status',{

@@ -1,25 +1,28 @@
 import React from 'react'
-import { profileAPI } from '../../API/api'
-import { isAuthUserThunk } from '../../redux/auth-reducer'
 import { connect } from 'react-redux'
-import { Login } from './login'
 import { compose } from 'redux'
+import { Login } from '../../redux/auth-reducer'
+//import { withRedirect } from '../../hoc/Recording'
+import { LoginHTML } from './LoginHTML'
+import { Redirect } from 'react-router-dom'
 
 class LoginContainer extends React.Component{
     onSubmit = (formData) => {
-        profileAPI.postAuthLogin(formData.login,formData.password,formData.rememberMe).then(response=>{
-            if(response.data.resultCode === 0){
-                this.props.isAuthUserThunk()
-            }
-        })
+        this.props.Login(formData.email,formData.password,formData.rememberMe)
     }
     render(){
-        return( <Login {...this.props} onSubmit={this.onSubmit}/>)
+        if(this.props.isAuth){
+            return <Redirect to='/profile'/>
+        }
+        return( <LoginHTML {...this.props} onSubmit={this.onSubmit}/>)
     }
     
 }
-const mapStateToProps = (state) => ({
-})
+const mapStateToProps = (state)=>{
+    return {
+        isAuth:state.auth.isAuth
+    }
+}
 export default compose(
-    connect(mapStateToProps,{isAuthUserThunk}))
+    connect(mapStateToProps,{Login}))
 (LoginContainer)
