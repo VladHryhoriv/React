@@ -17,8 +17,8 @@ let initionalState = {
     ],
     profile: null,
     fullName: null,
-    status:null,
-    userId:null
+    status: null,
+    userId: null
 };
 
 
@@ -43,66 +43,66 @@ const profileReducer = (state = initionalState, action) => {
             }
         }
         case SET_USER_PROFILE: {
-            return { ...state, profile:action.profile }
+            return { ...state, profile: action.profile }
         }
         case SET_FULL_NAME: {
-            return { ...state, fullName:action.name }
+            return { ...state, fullName: action.name }
         }
-        case SET_USER_STATUS:{
-            return {...state,status:action.status}
+        case SET_USER_STATUS: {
+            return { ...state, status: action.status }
         }
-        case SET_USER_ID:{
-            return{...state,userId:action.id}
+        case SET_USER_ID: {
+            return { ...state, userId: action.id }
         }
         default: return state;
     }
 }
-export const AddPost = (newPost) => ({ type: ADD_POST ,newPost})
+export const AddPost = (newPost) => ({ type: ADD_POST, newPost })
 export const ChangeInPost = (text) => ({ type: CHANGE_IN_POST, newText: text })
-export const setUserProfile = (profile) => ({ type:SET_USER_PROFILE, profile })
+export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile })
 export const setFullName = (name) => ({ type: SET_FULL_NAME, name })
-export const setUserStatus = (status)=>({type:SET_USER_STATUS,status})
-export const setUserId = (id)=>({type:SET_USER_ID,id})
+export const setUserStatus = (status) => ({ type: SET_USER_STATUS, status })
+export const setUserId = (id) => ({ type: SET_USER_ID, id })
 
 export const setAuthMeThunk = () => {
     return (dispatch) => {
-        profileAPI.getAuthMe().then( data => {
+        profileAPI.getAuthMe().then(data => {
             dispatch(setUserId(data.data.id))
-            profileAPI.getUserProfile(data.data.id).then( response => {
-            dispatch(setUserProfile(response))
-                })
-            profileAPI.getUserStatus(data.data.id).then(data=>{
+            profileAPI.getUserProfile(data.data.id).then(response => {
+                dispatch(setUserProfile(response))
+            })
+            profileAPI.getUserStatus(data.data.id).then(data => {
                 dispatch(setUserStatus(data.data))
             })
         })
     }
 }
 export const getUserProfileThunk = (userId) => {
-    return (dispatch)=>{
+    return (dispatch) => {
         dispatch(setUserId(userId))
         profileAPI.getUserProfile(userId).then(data => {
             dispatch(setUserProfile(data))
-          })
+        })
     }
 }
-export const getUserStatus = (userId) =>{
-    return (dispatch)=>{
-        profileAPI.getUserStatus(userId).then(data=>{
+export const getUserStatus = (userId) => {
+    return (dispatch) => {
+        profileAPI.getUserStatus(userId).then(data => {
             dispatch(setUserStatus(data.data))
         })
     }
 }
-export const putUserStatus = (status) =>{
-    return (dispatch)=>{
-        profileAPI.putUserStatus(status).then(data=>{
-            if(data.data.resultCode === 0){
+export const putUserStatus = (status) => {
+    return (dispatch) => {
+        profileAPI.putUserStatus(status).then(data => {
+            if (data.data.resultCode === 0) {
                 dispatch(setUserStatus(status))
             }
         })
     }
 }
-export const AddPostThunk = (newPost) =>{
-    return (dispatch)=>{
+export const AddPostThunk = (newPost) => {
+    return (dispatch) => {
         dispatch(AddPost(newPost))
     }
 }

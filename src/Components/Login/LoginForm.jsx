@@ -13,8 +13,9 @@ const LoginForm = (props) =>{
         <form onSubmit={props.handleSubmit} className={style.wrapperForm}>
             <Field placeholder='Login' name='email' type={"text"} component={Input} validate={[require,maxLength50]} className={style.passInput +' ' + style.items}/>
             <Field placeholder='Password' name='password' type={"password"} component={Input} validate={[require,maxLength32]} className={style.passInput +' '+ style.items}/>
+            {props.error?<div className={style.someError}>{props.error}</div>:""}
             <div className={style.wrapperCheck}><Field component='input' name='rememberMe' type="checkbox" className={style.checkbox}/> Remember Me</div>
-            <button className={style.btn }>Login</button>
+            <button className={style.btn } disabled={props.isFetching}>Login</button>
         </form>
     </>
 }

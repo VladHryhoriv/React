@@ -7,7 +7,7 @@ export const LoginHTML = (props) => {
         <>
             <div className={style.wrapper}>
                 <h1>LOGIN</h1>
-                <LoginReduxForm onSubmit={props.onSubmit} />
+                <LoginReduxForm onSubmit={props.onSubmit} isFetching={props.isFetching}/>
             </div>
         </>
     )

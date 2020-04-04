@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import Users from './Users'
 import {getFollowThunk,getUnfollowThunk,getUsersThunk,getCurrentPageThunk} from '../../redux/users-reducer'
 import Preloader from '../Preloader/Preload'
-import { withRedirect } from '../../hoc/Recording'
+//import { withRedirect } from '../../hoc/Recording'
 import { compose } from 'redux'
 
 class UserContainer extends React.Component {
@@ -44,7 +44,7 @@ let mapStateToProps = (state) => {
 }
 
 export default compose(
-    withRedirect,
+    //withRedirect,
     connect(mapStateToProps,{getFollowThunk,getUnfollowThunk,getUsersThunk,getCurrentPageThunk })
 )(UserContainer)
 

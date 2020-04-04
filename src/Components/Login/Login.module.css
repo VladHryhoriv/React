@@ -28,6 +28,9 @@
     margin-top: 10px;
     
 }
+.wrapperForm .someError{
+    color: brown;
+}
 .wrapper .wrapperForm .btn{
     width: 100px;
     height: 30px;
