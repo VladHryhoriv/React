@@ -5,6 +5,7 @@ import {getFollowThunk,getUnfollowThunk,getUsersThunk,getCurrentPageThunk} from 
 import Preloader from '../Preloader/Preload'
 //import { withRedirect } from '../../hoc/Recording'
 import { compose } from 'redux'
+import { getUsers,getTotalUserCount, getCurrentPage, getUserSize, getIsFetching, getFollowingProgress } from '../../redux/UserSelectors'
 
 class UserContainer extends React.Component {
 	componentDidMount() {
@@ -34,12 +35,12 @@ class UserContainer extends React.Component {
 
 let mapStateToProps = (state) => {
     return{
-        users:state.userPage.users,
-        totalUserCount:state.userPage.totalUserCount,
-        currentPage:state.userPage.currentPage,
-        userSize:state.userPage.userSize,
-        isFetching:state.userPage.isFetching,
-        FollowingProgress:state.userPage.FollowingProgress,
+        users:getUsers(state),
+        totalUserCount:getTotalUserCount(state),
+        currentPage:getCurrentPage(state),
+        userSize:getUserSize(state),
+        isFetching:getIsFetching(state),
+        FollowingProgress:getFollowingProgress(state),
     }
 }
 

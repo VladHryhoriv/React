@@ -3,11 +3,11 @@ import style from './MyPost.module.css';
 import OtherPost from '../OtherPost/OtherPost';
 import Preloader from '../../Preloader/Preload';
 import userPhoto from '../../../assmeut/UserPhoto/user.png'
-import ProfileStatus from './ProfileStatus';
+import ProfileStatusHook from './ProfileStatusHook';
 import { AddPostReduxForm } from './AddPostReduxForm';
 
 
-const MyPost = (props) => {
+const MyPost = React.memo((props) => {
   let otherPosts = props.postsData.map((otherPost) => <OtherPost text={otherPost.text} key={otherPost.id} likeCount={otherPost.likeCount} />)
   
   if(!props.profile){
@@ -26,7 +26,7 @@ const MyPost = (props) => {
         <div className={style.name}>
           {props.profile.fullName}
               <div className={style.about_person}>
-                  <ProfileStatus status={props.status} putUserStatus={props.putUserStatus}/>
+                  <ProfileStatusHook status={props.status} putUserStatus={props.putUserStatus}/>
               </div>
         </div>
       </div>
@@ -38,5 +38,5 @@ const MyPost = (props) => {
       <link href={`https://fonts.googleapis.com/css?family=Kanit&display=swap`} rel="stylesheet"></link>
     </div>
   );
-}
+})
 export default MyPost;

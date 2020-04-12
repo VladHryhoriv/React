@@ -11,7 +11,7 @@ const AddPostForm = (props) => {
             <Field placeholder='The best site for PROGRAMING' name='yourPost'
              className={style.your_post} 
              validate={[require,maxLength30]}
-             value={props.newPostChange} component={Input}/>
+             component={Input}/>
             <div className={style.wrapper_button}>
                 <button className={style.but_send}>Publish</button>
             </div>

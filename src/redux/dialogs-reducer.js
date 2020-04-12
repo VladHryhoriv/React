@@ -23,7 +23,7 @@ const dialogReducer = (state = initionalState, action) => {
         default: return state;
     }
 }
-const sendMessageActionCreator = (newMessage) => ({ type: SEND_MESSAGE ,newMessage})
+export const sendMessageActionCreator = (newMessage) => ({ type: SEND_MESSAGE ,newMessage})
 
 export const sendMessage = (newMessage)=>{
     return (dispatch)=>{

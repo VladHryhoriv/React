@@ -3,10 +3,12 @@ import style from './Dialogs.module.css';
 import { DialogReduxForm } from './DialogReduxForm';
 
 
-const Dialogs = (props) => {
+const Dialogs = React.memo((props) => {
     let onSubmit = (formData)=>{
         props.sendMessage(formData.messageInput)
     }
+    console.log("Dialogs")
+    console.log(props)
     return (
         <div className={style.wrapper}>
             <div className={style.dialogs}>
@@ -20,6 +22,6 @@ const Dialogs = (props) => {
             </div>
         </div>
     );
-}
+})
 
 export default Dialogs;

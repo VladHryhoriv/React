@@ -1,12 +1,13 @@
-import React from 'react'
-import { AddPostThunk, ChangeInPost,setAuthMeThunk,getUserProfileThunk,setUserId,getUserStatus,putUserStatus} from '../../../redux/profile-reducer';
+import React , {PureComponent} from 'react'
+import { AddPostThunk,setAuthMeThunk,getUserProfileThunk,getUserStatus,putUserStatus} from '../../../redux/profile-reducer';
 import MyPost from './MyPost';
 import { connect } from 'react-redux';
 import { withRedirect } from '../../../hoc/Recording';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
+import { getPosts, getProfile, getStatus } from '../../../redux/ProfileSelektors';
 
-class MyPostContainer extends React.Component {
+class MyPostContainer extends PureComponent {
     async componentDidMount() {
     let userId = this.props.match.params.userId;
     if (!userId) {
@@ -19,22 +20,20 @@ class MyPostContainer extends React.Component {
     
   }
   render() {
+    console.log("MPC")
     return <>
       <MyPost {...this.props} />
     </>
   }
 }
 const mapStateToProps = (state) => ({
-  newPostChange: state.profilePage.newPostChange,
-  postsData: state.profilePage.postsData,
-  profile: state.profilePage.profile,
-  fullName: state.profilePage.fullName,
-  status:state.profilePage.status,
-  userId:state.profilePage.userId
+  postsData: getPosts(state),
+  profile: getProfile(state),
+  status: getStatus(state)
 })
 
 export default compose(
   withRedirect,
   withRouter,
-  connect(mapStateToProps, { AddPostThunk, ChangeInPost,setAuthMeThunk,getUserProfileThunk,setUserId,getUserStatus,putUserStatus})
+  connect(mapStateToProps, { AddPostThunk,setAuthMeThunk,getUserProfileThunk,getUserStatus,putUserStatus})
 )(MyPostContainer)
