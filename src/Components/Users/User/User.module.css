@@ -1,0 +1,30 @@
+.user{
+    display: flex;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: white;
+    max-width: 500px;
+    width: 100%;
+    justify-content: space-around;
+    border: 2px solid #808000;
+    border-radius: 50px;
+}
+
+.aboutUserNS{
+    text-align: center;
+    vertical-align: middle;
+}
+.userImg{
+    border-radius: 60px;
+}
+.button{
+    display: flex;
+    align-items: center;
+}
+.button .unfollow , .follow{
+    background: #00BFFF;
+    border: none;
+    border-radius: 30px;
+    width: 80px;
+    height: 30px;
+}

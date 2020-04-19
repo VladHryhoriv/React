@@ -40,21 +40,20 @@ export const isFetching = (isFetching)=>{
 }
 
 export const getAuthUser = () => {
-    return (dispatch)=>{
-        return headerAPI.getAuthMe().then((data)=>{
+    return async (dispatch)=>{
+        let data = await headerAPI.getAuthMe()
             if(data.resultCode === 1){}
             else{
                 let {id,login,email} = data.data
                 dispatch(setAuthUser(id,login,email,true))
             }
-        })
     }
 }
 
 export const Login = (email,password,rememberMe) => {
-    return (dispatch)=>{
+    return async (dispatch)=>{
         isFetching(true)
-        profileAPI.Login(email,password,rememberMe).then(response=>{
+        let response = await profileAPI.Login(email,password,rememberMe)
             if(response.data.resultCode === 0){
                 dispatch(getAuthUser())
                 isFetching(false)
@@ -64,16 +63,14 @@ export const Login = (email,password,rememberMe) => {
                 dispatch(stopSubmit('login',{_error:message}))
                 isFetching(true)
             }
-        })
     }
 }
 export const Logout = () => {
-    return (dispatch)=>{
-        profileAPI.Logout().then(response=>{
+    return async (dispatch)=>{
+        let response = await profileAPI.Logout()
             if(response.data.resultCode === 0){
                 dispatch(setAuthUser(null,null,null,false))
             }
-        })
     }
 }
 export default AuthReducer;

@@ -1,4 +1,5 @@
 import { userAPI } from "../API/api";
+import { FollowUnfollowCase } from "../Components/Common/Helpers/FollowUnfollowCase/FollowUnfollowCase";
 
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
@@ -22,23 +23,17 @@ const usersReducer = (state = initionalState, action) => {
         case FOLLOW: {
             return {
                 ...state,
-                users:state.users.map(u=>{
-                    if(u.id === action.userId){
-                        return {...u,followed:true}
-                    }
-                    return u;
-                })
+                 users:
+                 FollowUnfollowCase(state.users,action.userId,true)
+                
             }
         }
         case UNFOLLOW:{
             return {
                 ...state,
-                users:state.users.map(u=>{
-                    if(u.id === action.userId){
-                        return {...u,followed:false}
-                    }
-                    return u;
-                })
+                users:
+                FollowUnfollowCase(state.users,action.userId,false)
+                
             }
         }
         case SET_USERS:{
@@ -71,33 +66,31 @@ export const setCurrentPage = (count) =>({ type: SET_CURRENT_PAGE, currentPage:c
 export const setIsFetching = (isFetching)=>({type:SET_IF_FETCHING,isFetching})
 export const isToggleFollowing = (isFollowing,userId)=>({type:IS_TOGGLE_FOLLOWING,isFollowing,userId}) 
 
+const FollowUnfollowFunc = async(api,dispatch,actionCreator,userID)=>{
+    dispatch(isToggleFollowing(true,userID))
+    await api(userID)
+        dispatch(actionCreator)
+        dispatch(isToggleFollowing(false,userID))
+}
+
 export const getUsersThunk = (currentPage,userSize)=>{
-    return (dispatch)=>{
+    return async(dispatch)=>{
         dispatch(setIsFetching(true))
-            userAPI.getUser(currentPage,userSize).then(data => {
+           let data = await userAPI.getUser(currentPage,userSize)
                 dispatch(setIsFetching(false))
                 dispatch(setUsers(data.items))
                 dispatch(setTotalUserCount(data.totalCount))
                 dispatch(setCurrentPage(currentPage))
-            })
     }
 }
 export const getFollowThunk = (userID)=>{
     return (dispatch)=>{
-        dispatch(isToggleFollowing(true,userID))
-		userAPI.Follow(userID).then(()=>{
-			dispatch(FollowSuccess(userID))
-			dispatch(isToggleFollowing(false,userID))
-		})
+        FollowUnfollowFunc(userAPI.Follow,dispatch,FollowSuccess(userID),userID)
     }
 }
 export const getUnfollowThunk = (userID)=>{
     return (dispatch)=>{
-        dispatch(isToggleFollowing(true,userID))
-		userAPI.Unfollow(userID).then(()=>{
-			dispatch(UnfollowSuccess(userID))
-			dispatch(isToggleFollowing(false,userID))
-		})
+        FollowUnfollowFunc(userAPI.Unfollow,dispatch,UnfollowSuccess(userID),userID)
     }
 }
 export const getCurrentPageThunk = (currentPage)=>{

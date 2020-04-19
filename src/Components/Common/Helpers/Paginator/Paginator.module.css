@@ -1,0 +1,19 @@
+.active{
+    font-weight: bold;
+    background-color: black;
+    color: white;
+}
+.notActive ,.active{
+    padding: 0 5px;
+    border: 2px solid black;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: .5s;
+}
+.notActive:hover{
+    background-color: white;
+}
+.prev,.next{
+    cursor: pointer;
+
+}
