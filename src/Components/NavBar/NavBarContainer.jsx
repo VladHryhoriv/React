@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import NavBar from './NavBar';
 
 const mapStateToProps = (state) => {
-    
     return {
         friends: state.navBar.Friends.map((f) => <Friends name={f.name} img={f.img} />)
     }

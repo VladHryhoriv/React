@@ -15,7 +15,6 @@ class ProfileStatus extends React.Component {
         this.setState({
             editMode: false
         })
-        debugger
         this.props.putUserStatus(this.state.status)
     }
     onStatusChange = (e) => {
@@ -33,7 +32,7 @@ class ProfileStatus extends React.Component {
     render() {
         return <>
             {!this.state.editMode
-                ? <div onDoubleClick={this.ChangeTextInStatus}><span>{this.props.status || "----"}</span></div>
+                ? <div><span onDoubleClick={this.ChangeTextInStatus}>{this.props.status || "----"}</span></div>
                 : <div><input autoFocus={true} type="text" defaultValue={this.props.status} 
                 onBlur={this.UnChangeTextInStatus} 
                 onChange={this.onStatusChange} />

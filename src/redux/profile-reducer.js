@@ -38,8 +38,8 @@ const profileReducer = (state = initionalState, action) => {
         case SET_USER_STATUS: {
             return { ...state, status: action.status }
         }
-        case DELETE_POST:{
-            return {...state,postsData: state.postsData.filter(p=>p.id != action.postId)}
+        case DELETE_POST: {
+            return { ...state, postsData: state.postsData.filter(p => p.id != action.postId) }
         }
         default: return state;
     }
@@ -47,41 +47,45 @@ const profileReducer = (state = initionalState, action) => {
 export const AddPost = (newPost) => ({ type: ADD_POST, newPost })
 export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile })
 export const setUserStatus = (status) => ({ type: SET_USER_STATUS, status })
-export const DeletePost = (postId)=>({type:DELETE_POST,postId})
+export const DeletePost = (postId) => ({ type: DELETE_POST, postId })
 
 export const setAuthMeThunk = () => {
-    return (dispatch) => {
-        profileAPI.getAuthMe().then(data => {
-            profileAPI.getUserProfile(data.data.id).then(response => {
+    return async (dispatch) => {
+        let data = await profileAPI.getAuthMe()
+        if (data.resultCode === 0) {
+            let response = await profileAPI.getUserProfile(data.data.id)
+            if (response) {
                 dispatch(setUserProfile(response))
-            })
-            profileAPI.getUserStatus(data.data.id).then(data => {
-                dispatch(setUserStatus(data.data))
-            })
-        })
+            }
+            let setStatus = await profileAPI.getUserStatus(data.data.id)
+            if (setStatus.status === 200) {
+                dispatch(setUserStatus(setStatus.data))
+            }
+        }
     }
 }
 export const getUserProfileThunk = (userId) => {
-    return (dispatch) => {
-        profileAPI.getUserProfile(userId).then(data => {
+    return async (dispatch) => {
+        let data = await profileAPI.getUserProfile(userId)
+        if (data) {
             dispatch(setUserProfile(data))
-        })
+        }
     }
 }
 export const getUserStatus = (userId) => {
-    return (dispatch) => {
-        profileAPI.getUserStatus(userId).then(data => {
+    return async (dispatch) => {
+        let data = await profileAPI.getUserStatus(userId)
+        if (data.status === 200) {
             dispatch(setUserStatus(data.data))
-        })
+        }
     }
 }
 export const putUserStatus = (status) => {
-    return (dispatch) => {
-        profileAPI.putUserStatus(status).then(data => {
+    return async (dispatch) => {
+        let data = await profileAPI.putUserStatus(status)
             if (data.data.resultCode === 0) {
                 dispatch(setUserStatus(status))
             }
-        })
     }
 }
 export const AddPostThunk = (newPost) => {
