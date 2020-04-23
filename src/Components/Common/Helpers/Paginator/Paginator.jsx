@@ -4,14 +4,6 @@ import style from './Paginator.module.css'
 export const Paginator = ({totalUserCount, userSize, currentPage, setCurrentPageThunk, onPageChange,portionSize=6}) => {
     let pagesCount = Math.ceil(totalUserCount / userSize);
     let pages = [];
-    
-    let clearSelection = ()=> {
-        if (window.getSelection) {
-          window.getSelection().removeAllRanges();
-        } else { 
-          document.selection.empty();
-        }
-      }
 
     let portionPage = Math.ceil(pagesCount/portionSize)
     let [portionNumber,setPortionNumber] = useState(1);
@@ -23,7 +15,7 @@ export const Paginator = ({totalUserCount, userSize, currentPage, setCurrentPage
     }
 
     return <div className={style.activePage}>
-        <span className={style.prev} ondblclick={clearSelection()} onClick={(e) => {
+        <span className={style.prev} onClick={(e) => {
             setPortionNumber(portionNumber-1)
         }}>&#8592;</span>
         {
