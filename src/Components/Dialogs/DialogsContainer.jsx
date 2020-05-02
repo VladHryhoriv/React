@@ -10,7 +10,6 @@ import { getMessages, getDialogData } from '../../redux/DiaogsSelektors';
 
 class DialogContainer extends PureComponent{
     render(){
-        console.log("DialogContainer")
         return <Dialogs {...this.props}/>
     }
 }

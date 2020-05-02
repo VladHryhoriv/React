@@ -3,7 +3,7 @@ import './App.css';
 import Profile from './Components/Profile/Profile';
 import Music from './Components/Music/Music';
 import News from './Components/News/News';
-import { Route, BrowserRouter } from 'react-router-dom';
+import { Route, HashRouter } from 'react-router-dom';
 import NavBarContainer from './Components/NavBar/NavBarContainer'
 import HeaderContainer from './Components/Header/HeaderContainer';
 import store from './redux/redux-store'
@@ -49,9 +49,9 @@ const mapStateToProps = (state) =>({
 let AppContainer = compose(connect(mapStateToProps,{setInitialized}))(App)
 
 export const MainlyAppComponent = (props)=>{
-  return <BrowserRouter>
+  return <HashRouter>
         <Provider store={store}>
             <AppContainer />
         </Provider>
-    </BrowserRouter>
+    </HashRouter>
 }

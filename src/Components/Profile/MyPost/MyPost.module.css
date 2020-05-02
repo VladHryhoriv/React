@@ -1,22 +1,27 @@
 .wrapper{
   padding: 20px;
 }
+.wrapper .personData .person .name{
+  font-size: 16px;
+  width: 100%;
+  margin-left: 20px;
+}
  .person{
   display: flex;
+}
+.someError{
+  color: red;
 }
  .ava img{
   height: 100px;
   width: 100px;
 }
- .person .name{
-  width: 100%;
-  margin-left: 20px;
-  font-size: 24px;
-}
 .new_post{
   display: block;
 }
-
+.contacts{
+  padding-left: 10px;
+}
 .your_post{
   width: 100%;
   height: 40px;

@@ -13,7 +13,7 @@ const Header = (props) => {
                     ? <div className={style.wrapperName}><div className={style.name}>{props.login}</div>
                         <div className={style.wrapperLogout}>
                             <button onClick={props.Logout} className={style.logout}>Logout
-                                <img src={exit} alt="NONE" srcset="" />
+                                <img src={exit} alt="NONE"  />
                             </button>
                         </div>
                     </div>

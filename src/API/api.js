@@ -48,11 +48,12 @@ export const profileAPI = {
                 return response.data
         })
     },
-    Login(email,password,rememberMe){
+    Login(email,password,rememberMe,captcha){
         return instance.post('auth/login',{
             email,
             password,
-            rememberMe
+            rememberMe,
+            captcha
         })
     },
     Logout(){
@@ -65,5 +66,22 @@ export const profileAPI = {
     },
     getUserStatus(userId){
         return instance.get(`profile/status/${userId}`)
+    },
+    profileUpdate(data){
+        return instance.put('profile',data)
+    },
+    savePhoto(file){
+        let formData = new FormData();
+        formData.append('image',file)
+        return instance.put(`profile/photo`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+    }
+}
+export const securityAPI = {
+    getCaptchaUrl(){
+        return instance.get('security/get-captcha-url')
     }
 }

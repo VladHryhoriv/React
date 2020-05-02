@@ -6,7 +6,6 @@ class ProfileStatus extends React.Component {
         status: this.props.status
     }
     ChangeTextInStatus = () => {
-        console.log(this)
         this.setState({
             editMode: true
         })
@@ -22,8 +21,8 @@ class ProfileStatus extends React.Component {
             status: e.currentTarget.value
         })
     }
-    componentDidUpdate(thisStatus,prevStatus){
-        if(thisStatus.status !== this.props.status){
+    componentDidUpdate(prevStatus,thisStatus){
+        if(prevStatus.status !== this.props.status){
             this.setState({
                 status:this.props.status
             })

@@ -5,7 +5,7 @@ import NavBar from './NavBar';
 
 const mapStateToProps = (state) => {
     return {
-        friends: state.navBar.Friends.map((f) => <Friends name={f.name} img={f.img} />)
+        friends: state.navBar.Friends.map((f) => <Friends key={f.id} name={f.name} img={f.img} />)
     }
 }
 

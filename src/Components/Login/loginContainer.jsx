@@ -8,7 +8,7 @@ import { Redirect } from 'react-router-dom'
 
 class LoginContainer extends React.Component{
     onSubmit = (formData) => {
-        this.props.Login(formData.email,formData.password,formData.rememberMe)
+        this.props.Login(formData.email,formData.password,formData.rememberMe,formData.captcha)
     }
     render(){
         if(this.props.isAuth){
@@ -21,7 +21,8 @@ class LoginContainer extends React.Component{
 const mapStateToProps = (state)=>{
     return {
         isAuth:state.auth.isAuth,
-        isFetching:state.auth.isFetching
+        isFetching:state.auth.isFetching,
+        captchaUrl:state.auth.captchaUrl
     }
 }
 export default compose(

@@ -7,8 +7,6 @@ const Dialogs = React.memo((props) => {
     let onSubmit = (formData)=>{
         props.sendMessage(formData.messageInput)
     }
-    console.log("Dialogs")
-    console.log(props)
     return (
         <div className={style.wrapper}>
             <div className={style.dialogs}>

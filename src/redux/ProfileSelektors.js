@@ -7,3 +7,9 @@ export const getProfile=(state)=>{
 export const getStatus=(state)=>{
     return state.profilePage.status
 }
+export const getAuthorizeUserId=(state)=>{
+    return state.auth.userId;
+}
+export const getIsFetching=(state)=>{
+    return state.profilePage.isFetching
+}

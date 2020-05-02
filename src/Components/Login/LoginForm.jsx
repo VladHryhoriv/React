@@ -1,8 +1,9 @@
-import { Field, reduxForm } from "redux-form"
+import { reduxForm } from "redux-form"
 import React from 'react'
 import style from './Login.module.css'
 import { Input } from "../Common/FormInput/FormInput";
 import { require, MaxLength } from "../../Validators/Validate";
+import { createField } from "../Common/Field/Field";
 
 const maxLength50 = MaxLength(50);
 const maxLength32 = MaxLength(32);
@@ -11,10 +12,13 @@ const maxLength32 = MaxLength(32);
 const LoginForm = (props) =>{
     return <>
         <form onSubmit={props.handleSubmit} className={style.wrapperForm}>
-            <Field placeholder='Login' name='email' type={"text"} component={Input} validate={[require,maxLength50]} className={style.passInput +' ' + style.items}/>
-            <Field placeholder='Password' name='password' type={"password"} component={Input} validate={[require,maxLength32]} className={style.passInput +' '+ style.items}/>
+            {createField('Login','email',"text",Input,[require,maxLength50],style.passInput +' ' + style.items,null)}
+            {createField('Password','password',"password",Input,[require,maxLength32],style.passInput +' '+ style.items,null)}
+            {props.captchaUrl && <img src={props.captchaUrl} alt='CaptchaImage'></img>}
+            {props.captchaUrl && createField('Symbols on image','captcha','text',Input,[require],'',null)}
             {props.error?<div className={style.someError}>{props.error}</div>:""}
-            <div className={style.wrapperCheck}><Field component='input' name='rememberMe' type="checkbox" className={style.checkbox}/> Remember Me</div>
+            <div className={style.wrapperCheck}>
+                {createField('','rememberMe',"checkbox",Input,[],'style.checkbox','')} Remember Me</div>
             <button className={style.btn } disabled={props.isFetching}>Login</button>
         </form>
     </>
