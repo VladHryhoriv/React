@@ -111,13 +111,11 @@ export const DeletePostThunk = (postId) => {
         dispatch(DeletePost(postId))
     }
 }
-
 export const UpdateProfile = (profile)=>{
     return async (dispatch)=>{
         let resp = await profileAPI.profileUpdate(profile)
         if (resp.data.resultCode === 0){
            dispatch(setUserProfile(profile))
-           dispatch()
         }
         else{
             dispatch(stopSubmit('edit-profile',{_error:resp.data.messages[0]}))

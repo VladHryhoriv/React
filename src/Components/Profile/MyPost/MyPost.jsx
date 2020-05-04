@@ -17,7 +17,7 @@ const MyPost = React.memo((props) => {
     props.AddPostThunk(formData.yourPost)
     console.log("After post")
   }
-  let onSubmitEditMode =(formData)=>{
+  let onSubmit =(formData)=>{
     props.UpdateProfile(formData).then(()=>{
       setEditMode(false)
     })
@@ -27,15 +27,12 @@ const MyPost = React.memo((props) => {
       props.savePhoto(e.target.files[0])
     }
   }
-  // if(props.isFetching){
-  //   return <Preloader/>
-  // }
   let [edit,setEditMode] = useState(false)
   return (
     <div className={style.wrapper}>
       <div className={style.personData}>
       {!edit?<ProfileData owner={props.owner} setEditMode={setEditMode} profile={props.profile} status={props.status} putUserStatus={props.putUserStatus} />
-      :<ProfileDataEditReduxForm isFetching={props.isFetching} onSavePhoto={onSavePhoto} initialValues={props.profile} profile={props.profile} onSubmit={onSubmitEditMode} status={props.status} putUserStatus={props.putUserStatus}/>}
+      :<ProfileDataEditReduxForm isFetching={props.isFetching} onSavePhoto={onSavePhoto} initialValues={props.profile} profile={props.profile} onSubmit={onSubmit} status={props.status} putUserStatus={props.putUserStatus}/>}
       </div>
       <div className={style.new_post}>
         <div className={style.text}> MyPost</div>

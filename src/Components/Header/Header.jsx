@@ -12,7 +12,8 @@ const Header = (props) => {
                    <div className={style.login}>{props.isAuth
                     ? <div className={style.wrapperName}><div className={style.name}>{props.login}</div>
                         <div className={style.wrapperLogout}>
-                            <button onClick={props.Logout} className={style.logout}>Logout
+                            <button onClick={props.Logout} className={style.logout}>
+                                <NavLink to='/login'>Logout</NavLink>
                                 <img src={exit} alt="NONE"  />
                             </button>
                         </div>

@@ -22,9 +22,10 @@ export const initializedSuccess = ()=>({type:SET_INITIALIZED})
 export const setInitialized = ()=>{
     return (dispatch)=>{
         let promise = dispatch(getAuthUser())
-        if(promise.then){
-            dispatch(initializedSuccess())
-        }
+        Promise.all([promise])
+        .then(() => {
+            dispatch(initializedSuccess());
+        })
     }
 }
 
